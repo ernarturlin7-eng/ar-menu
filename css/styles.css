@@ -1,0 +1,678 @@
+/* ========================================
+   Глобальные переменные и сброс стилей
+   ======================================== */
+
+:root {
+    /* Цветовая палитра - элегантная и изысканная */
+    --color-primary: #1a1a1a;
+    --color-secondary: #f5f3f0;
+    --color-accent: #d4a574;
+    --color-accent-dark: #b88b5d;
+    --color-text: #2c2c2c;
+    --color-text-light: #6b6b6b;
+    --color-border: #e0ddd9;
+    --color-white: #ffffff;
+    --color-shadow: rgba(0, 0, 0, 0.1);
+    --color-overlay: rgba(26, 26, 26, 0.05);
+    
+    /* Градиенты */
+    --gradient-gold: linear-gradient(135deg, #d4a574 0%, #e8c9a5 100%);
+    --gradient-dark: linear-gradient(180deg, #1a1a1a 0%, #2c2c2c 100%);
+    --gradient-bg: linear-gradient(135deg, #f8f6f3 0%, #f0ede8 100%);
+    
+    /* Типографика */
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Montserrat', sans-serif;
+    
+    /* Размеры */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    --spacing-xxl: 4rem;
+    
+    /* Радиусы */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    
+    /* Тени */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.12);
+    --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.15);
+    
+    /* Переходы */
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--gradient-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* ========================================
+   Анимированный фон
+   ======================================== */
+
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    animation: float 20s ease-in-out infinite;
+}
+
+.orb-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #d4a574 0%, transparent 70%);
+    top: -100px;
+    left: -100px;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #e8c9a5 0%, transparent 70%);
+    bottom: -150px;
+    right: -150px;
+    animation-delay: -7s;
+}
+
+.orb-3 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, #b88b5d 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: -14s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(30px, -30px) scale(1.1);
+    }
+    66% {
+        transform: translate(-30px, 30px) scale(0.9);
+    }
+}
+
+/* ========================================
+   Контейнер и общие элементы
+   ======================================== */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* ========================================
+   Шапка сайта
+   ======================================== */
+
+.header {
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.logo {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: 0.02em;
+    position: relative;
+    display: inline-block;
+}
+
+.logo::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-gold);
+    border-radius: 2px;
+}
+
+.tagline {
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    margin-top: var(--spacing-md);
+}
+
+/* ========================================
+   Инструкция
+   ======================================== */
+
+.instruction-card {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xxl);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    border: 1px solid var(--color-border);
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+    position: relative;
+    overflow: hidden;
+}
+
+.instruction-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient-gold);
+}
+
+.instruction-icon {
+    font-size: 4rem;
+    margin-bottom: var(--spacing-md);
+    display: inline-block;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.instruction-card h2 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-primary);
+}
+
+.instruction-list {
+    list-style: none;
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+    counter-reset: instruction-counter;
+}
+
+.instruction-list li {
+    position: relative;
+    padding: var(--spacing-sm) 0 var(--spacing-sm) 3rem;
+    counter-increment: instruction-counter;
+    font-size: 1.05rem;
+    color: var(--color-text);
+    line-height: 1.8;
+}
+
+.instruction-list li::before {
+    content: counter(instruction-counter);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2rem;
+    height: 2rem;
+    background: var(--gradient-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-white);
+}
+
+/* ========================================
+   Категории меню
+   ======================================== */
+
+.category {
+    margin-bottom: var(--spacing-xxl);
+}
+
+.category-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    animation: fadeInLeft 0.8s ease-out;
+}
+
+.category-icon {
+    font-size: 2rem;
+}
+
+/* ========================================
+   Карточки блюд
+   ======================================== */
+
+.dish-card {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-border);
+    transition: all var(--transition-normal);
+    animation: fadeInUp 0.8s ease-out both;
+    position: relative;
+    overflow: hidden;
+}
+
+.dish-card:nth-child(1) { animation-delay: 0.1s; }
+.dish-card:nth-child(2) { animation-delay: 0.2s; }
+.dish-card:nth-child(3) { animation-delay: 0.3s; }
+.dish-card:nth-child(4) { animation-delay: 0.4s; }
+
+.dish-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.dish-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-gold);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    pointer-events: none;
+}
+
+.dish-card:hover::before {
+    opacity: 0.03;
+}
+
+/* Заголовок блюда */
+
+.dish-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.dish-info {
+    flex: 1;
+}
+
+.dish-name {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.3;
+}
+
+.dish-description {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-md);
+}
+
+.dish-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    font-weight: 500;
+}
+
+.dish-separator {
+    color: var(--color-accent);
+}
+
+/* Цена блюда */
+
+.dish-price-box {
+    background: var(--gradient-gold);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-align: center;
+    min-width: 120px;
+    box-shadow: var(--shadow-sm);
+}
+
+.price-value {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-white);
+    line-height: 1;
+}
+
+.price-currency {
+    display: block;
+    font-size: 1rem;
+    color: var(--color-white);
+    opacity: 0.9;
+    margin-top: 0.25rem;
+}
+
+/* ========================================
+   Model Viewer (3D модели)
+   ======================================== */
+
+.model-viewer-container {
+    position: relative;
+    width: 100%;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--color-secondary);
+    border: 2px solid var(--color-border);
+}
+
+.dish-model {
+    width: 100%;
+    height: 450px;
+    border-radius: var(--radius-md);
+    background: var(--color-secondary);
+}
+
+.model-loading {
+    width: 100%;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-secondary);
+    color: var(--color-text-light);
+    font-size: 1rem;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--color-border);
+    border-top-color: var(--color-accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: var(--spacing-md);
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.model-hint {
+    position: absolute;
+    bottom: var(--spacing-md);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(26, 26, 26, 0.85);
+    color: var(--color-white);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    backdrop-filter: blur(10px);
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.model-hint span {
+    font-size: 1.2rem;
+    animation: rotate 3s ease-in-out infinite;
+}
+
+@keyframes rotate {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(180deg); }
+}
+
+/* ========================================
+   AR кнопка
+   ======================================== */
+
+.ar-button {
+    position: absolute;
+    bottom: var(--spacing-lg);
+    right: var(--spacing-lg);
+    background: var(--gradient-gold);
+    color: var(--color-white);
+    border: none;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-normal);
+    z-index: 10;
+}
+
+.ar-button:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: var(--shadow-xl);
+}
+
+.ar-button:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.ar-icon {
+    font-size: 1.3rem;
+}
+
+.ar-text {
+    letter-spacing: 0.03em;
+}
+
+/* ========================================
+   Футер
+   ======================================== */
+
+.footer {
+    background: var(--color-primary);
+    color: var(--color-white);
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+    margin-top: var(--spacing-xxl);
+}
+
+.footer-text {
+    font-size: 1rem;
+    margin-bottom: var(--spacing-sm);
+    opacity: 0.9;
+}
+
+.footer-hint {
+    font-size: 0.85rem;
+    opacity: 0.6;
+    font-weight: 300;
+}
+
+/* ========================================
+   Анимации
+   ======================================== */
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* ========================================
+   Адаптивность
+   ======================================== */
+
+@media (max-width: 768px) {
+    .logo {
+        font-size: 3rem;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+    }
+    
+    .instruction-card {
+        padding: var(--spacing-lg);
+    }
+    
+    .instruction-icon {
+        font-size: 3rem;
+    }
+    
+    .category-title {
+        font-size: 2rem;
+    }
+    
+    .dish-card {
+        padding: var(--spacing-lg);
+    }
+    
+    .dish-header {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .dish-name {
+        font-size: 1.5rem;
+    }
+    
+    .dish-price-box {
+        align-self: flex-start;
+        min-width: 100px;
+    }
+    
+    .price-value {
+        font-size: 2rem;
+    }
+    
+    .dish-model {
+        height: 350px;
+    }
+    
+    .model-loading {
+        height: 350px;
+    }
+    
+    .ar-button {
+        bottom: var(--spacing-md);
+        right: var(--spacing-md);
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 2.5rem;
+    }
+    
+    .instruction-list li {
+        font-size: 0.95rem;
+        padding-left: 2.5rem;
+    }
+    
+    .instruction-list li::before {
+        width: 1.8rem;
+        height: 1.8rem;
+        font-size: 0.85rem;
+    }
+    
+    .dish-model {
+        height: 300px;
+    }
+    
+    .model-loading {
+        height: 300px;
+    }
+}

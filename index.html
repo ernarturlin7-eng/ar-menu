@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="AR Меню - Посмотрите блюда в дополненной реальности">
+    <title>AR Меню - Дополненная Реальность</title>
+    
+    <!-- Model Viewer для AR -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+    
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <!-- Анимированный фон -->
+    <div class="bg-animation">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Заголовок -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">AR Menu</h1>
+            <p class="tagline">Попробуйте блюда в дополненной реальности</p>
+        </div>
+    </header>
+
+    <!-- Основное меню -->
+    <main class="menu-container">
+        <div class="container">
+            
+            <!-- Инструкция для пользователя -->
+            <div class="instruction-card">
+                <div class="instruction-icon">📱</div>
+                <h2>Как это работает?</h2>
+                <ol class="instruction-list">
+                    <li>Выберите блюдо из меню ниже</li>
+                    <li>Нажмите кнопку "Посмотреть в AR"</li>
+                    <li>Наведите камеру на горизонтальную поверхность</li>
+                    <li>Блюдо появится перед вами в реальном размере!</li>
+                </ol>
+                <p style="text-align: center; margin-top: 20px; color: #6b6b6b; font-size: 0.9rem;">
+                    <strong>iOS:</strong> используйте Safari | <strong>Android:</strong> используйте Chrome
+                </p>
+            </div>
+
+            <!-- Категория: Горячие блюда -->
+            <section class="category">
+                <h2 class="category-title">
+                    <span class="category-icon">🔥</span>
+                    Горячие блюда
+                </h2>
+
+                <!-- Блюдо 1: Борщ - ВАША МОДЕЛЬ -->
+                <article class="dish-card" data-category="hot">
+                    <div class="dish-header">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Украинский борщ</h3>
+                            <p class="dish-description">Традиционный борщ со свёклой, говядиной и сметаной. Подаётся с чесночными пампушками и свежей зеленью.</p>
+                            <div class="dish-meta">
+                                <span class="dish-weight">400г</span>
+                                <span class="dish-separator">•</span>
+                                <span class="dish-calories">320 ккал</span>
+                            </div>
+                        </div>
+                        <div class="dish-price-box">
+                            <span class="price-value">500</span>
+                            <span class="price-currency">₽</span>
+                        </div>
+                    </div>
+                    
+                    <div class="model-viewer-container">
+                        <model-viewer
+                            class="dish-model"
+                            src="./models/borsch.glb"
+                            ar
+                            ar-modes="webxr scene-viewer quick-look"
+                            camera-controls
+                            auto-rotate
+                            auto-rotate-delay="1000"
+                            rotation-per-second="30deg"
+                            shadow-intensity="1"
+                            exposure="1.2"
+                            camera-orbit="0deg 75deg 0.3m"
+                            min-camera-orbit="auto auto 0.1m"
+                            max-camera-orbit="auto auto 1m"
+                            environment-image="neutral"
+                            alt="3D модель украинского борща">
+                            
+                            <button slot="ar-button" class="ar-button">
+                                <span class="ar-icon">📱</span>
+                                <span class="ar-text">Посмотреть в AR</span>
+                            </button>
+                            
+                            <div class="model-loading" slot="poster">
+                                <div class="spinner"></div>
+                                <p>Загрузка 3D модели...</p>
+                            </div>
+                        </model-viewer>
+                        
+                        <div class="model-hint">
+                            <span>↻</span> Поворачивайте модель пальцем
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Блюдо 2: Стейк (Демо с временной моделью) -->
+                <article class="dish-card" data-category="hot">
+                    <div class="dish-header">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Стейк Рибай</h3>
+                            <p class="dish-description">Премиальный стейк из мраморной говядины средней прожарки. С печёными овощами и соусом из красного вина.</p>
+                            <div class="dish-meta">
+                                <span class="dish-weight">350г</span>
+                                <span class="dish-separator">•</span>
+                                <span class="dish-calories">580 ккал</span>
+                            </div>
+                        </div>
+                        <div class="dish-price-box">
+                            <span class="price-value">1200</span>
+                            <span class="price-currency">₽</span>
+                        </div>
+                    </div>
+                    
+                    <div class="model-viewer-container">
+                        <model-viewer
+                            class="dish-model"
+                            src="https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/Hamburger/glTF-Binary/Hamburger.glb"
+                            ar
+                            ar-modes="webxr scene-viewer quick-look"
+                            camera-controls
+                            auto-rotate
+                            auto-rotate-delay="1000"
+                            rotation-per-second="30deg"
+                            shadow-intensity="1"
+                            exposure="1.2"
+                            environment-image="neutral"
+                            alt="3D модель стейка (демо)">
+                            
+                            <button slot="ar-button" class="ar-button">
+                                <span class="ar-icon">📱</span>
+                                <span class="ar-text">Посмотреть в AR</span>
+                            </button>
+                            
+                            <div class="model-loading" slot="poster">
+                                <div class="spinner"></div>
+                                <p>Загрузка 3D модели...</p>
+                            </div>
+                        </model-viewer>
+                        
+                        <div class="model-hint">
+                            <span>↻</span> Поворачивайте модель пальцем
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 10px; padding: 10px; background: #fff3cd; border-radius: 8px;">
+                            <small style="color: #856404;">📝 Демо модель. Замените на вашу в models/steak.glb</small>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Блюдо 3: Паста (Демо) -->
+                <article class="dish-card" data-category="hot">
+                    <div class="dish-header">
+                        <div class="dish-info">
+                            <h3 class="dish-name">Паста Карбонара</h3>
+                            <p class="dish-description">Классическая итальянская паста с беконом гуанчиале, яичным желтком и сыром Пекорино Романо.</p>
+                            <div class="dish-meta">
+                                <span class="dish-weight">320г</span>
+                                <span class="dish-separator">•</span>
+                                <span class="dish-calories">640 ккал</span>
+                            </div>
+                        </div>
+                        <div class="dish-price-box">
+                            <span class="price-value">750</span>
+                            <span class="price-currency">₽</span>
+                        </div>
+                    </div>
+                    
+                    <div class="model-viewer-container">
+                        <model-viewer
+                            class="dish-model"
+                            src="https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/Avocado/glTF-Binary/Avocado.glb"
+                            ar
+                            ar-modes="webxr scene-viewer quick-look"
+                            camera-controls
+                            auto-rotate
+                            auto-rotate-delay="1000"
+                            rotation-per-second="30deg"
+                            shadow-intensity="1"
+                            exposure="1.2"
+                            environment-image="neutral"
+                            alt="3D модель пасты (демо)">
+                            
+                            <button slot="ar-button" class="ar-button">
+                                <span class="ar-icon">📱</span>
+                                <span class="ar-text">Посмотреть в AR</span>
+                            </button>
+                            
+                            <div class="model-loading" slot="poster">
+                                <div class="spinner"></div>
+                                <p>Загрузка 3D модели...</p>
+                            </div>
+                        </model-viewer>
+                        
+                        <div class="model-hint">
+                            <span>↻</span> Поворачивайте модель пальцем
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 10px; padding: 10px; background: #fff3cd; border-radius: 8px;">
+                            <small style="color: #856404;">📝 Демо модель. Замените на вашу в models/pasta.glb</small>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">AR Menu © 2026 • Технология дополненной реальности</p>
+            <p class="footer-hint">Для лучшего опыта используйте современные смартфоны с ARCore (Android) или ARKit (iOS)</p>
+        </div>
+    </footer>
+
+    <script src="./js/script.js"></script>
+</body>
+</html>
